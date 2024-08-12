@@ -179,7 +179,7 @@ class Serialport {
   async listen(fn: (...args: any[]) => void, isDecode = true): Promise<void> {
     try {
       await this.cancelListen();
-      let readEvent = 'plugin-serialport-read-' + this.options.portName;
+      let readEvent = 'plugin-serialport-read-' + this.options.portName.replace('.', '_');
       this.unListen = await appWindow.listen<ReadDataResult>(
         readEvent,
         ({ payload }) => {

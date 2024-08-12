@@ -253,8 +253,10 @@ pub fn read<R: Runtime>(
         } else {
             println!("Start reading data from serial port: {}", &port_name);
             match serialport_info.serialport.try_clone() {
+                
                 Ok(mut serial) => {
-                    let read_event = format!("plugin-serialport-read-{}", &port_name);
+                    let sanitized_port_name: String = port_name.replace('.', "_");
+                    let read_event = format!("plugin-serialport-read-{}", &sanitized_port_name);
                     let (tx, rx): (Sender<usize>, Receiver<usize>) = mpsc::channel();
                     serialport_info.sender = Some(tx);
                     thread::spawn(move || loop {
