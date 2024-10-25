@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-serialport"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["deid84"]
 description = ""
 edition = "2021"
